@@ -47,7 +47,6 @@ export class EmployeeService {
   }
 
   async update(id: string, dto: UpdateEmployeeDto): Promise<SafeEmployee> {
-    await this.findById(id);
     if (dto.email) {
       const conflict = await this.prisma.employee.findUnique({
         where: { email: dto.email },
@@ -66,7 +65,6 @@ export class EmployeeService {
   }
 
   async delete(id: string): Promise<void> {
-    await this.findById(id);
     await this.prisma.employee.delete({ where: { id } });
   }
 }

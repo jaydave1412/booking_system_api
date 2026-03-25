@@ -10,7 +10,11 @@ async function bootstrap() {
     origin: ['http://localhost:3000', 'http://localhost:3001'],
     credentials: true,
   });
-  app.useGlobalPipes(new ValidationPipe());
+  app.useGlobalPipes(
+    new ValidationPipe({
+      transform: true,
+    }),
+  );
   await app.listen(process.env.PORT ?? 3000);
 }
 // eslint-disable-next-line @typescript-eslint/no-floating-promises
