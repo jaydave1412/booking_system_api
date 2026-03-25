@@ -8,16 +8,19 @@ import {
   Param,
   Patch,
   Post,
+  UseGuards,
 } from '@nestjs/common';
 import { EmployeeService } from './employee.service';
 import { CreateEmployeeDto } from './dto/create-employee.dto';
 import { UpdateEmployeeDto } from './dto/update-employee.dto';
+import { AuthGuard } from '@nestjs/passport';
 
 @Controller('employee')
 export class EmployeeController {
   constructor(private readonly employeeService: EmployeeService) {}
 
   @Post()
+  @UseGuards(AuthGuard('jwt'))
   create(@Body() dto: CreateEmployeeDto) {
     return this.employeeService.create(dto);
   }
