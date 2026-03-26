@@ -57,7 +57,7 @@ model Booking {
   event      Events   @relation(fields: [eventId], references: [id])
   eventId    String
 
-  status     String   @default("confirmed")
+  status     String   @default("CONFIRMED")
 
   createdAt  DateTime @default(now())
   updatedAt  DateTime @updatedAt

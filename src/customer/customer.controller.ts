@@ -3,10 +3,16 @@ import { CustomerService } from './customer.service';
 import { LoginDto } from 'src/auth/dto/login.dto';
 import { JwtAuthGuard } from 'src/auth/jwtAuth.guard';
 import { Roles } from 'src/auth/roles.decorator';
+import { CreateCustomerDto } from './dto/create-customer.dto';
 
 @Controller('customer')
 export class CustomerController {
   constructor(private readonly customerService: CustomerService) {}
+
+  @Post('/register')
+  create(@Body() dto: CreateCustomerDto) {
+    return this.customerService.create(dto);
+  }
 
   @Post('/login')
   login(@Body() dto: LoginDto) {
