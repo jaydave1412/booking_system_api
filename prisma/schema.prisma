@@ -31,6 +31,7 @@ model Customer {
   password  String
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
+  Bookings   Booking[]
 
   @@map("customers")
 }
@@ -42,7 +43,26 @@ model Events{
   date        DateTime
   createdAt   DateTime @default(now())
   updatedAt   DateTime @updatedAt
+  Bookings     Booking[]
 
   @@map("events")
+}
+
+model Booking {
+  id         String   @id @default(cuid())
+
+  customer   Customer @relation(fields: [customerId], references: [id])
+  customerId String
+
+  event      Events   @relation(fields: [eventId], references: [id])
+  eventId    String
+
+  status     String   @default("confirmed")
+
+  createdAt  DateTime @default(now())
+  updatedAt  DateTime @updatedAt
+
+  @@unique([customerId, eventId])
+  @@map("bookings")
 }
 

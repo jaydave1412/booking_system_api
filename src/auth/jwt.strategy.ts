@@ -18,6 +18,7 @@ export class JwtStrategy extends PassportStrategy(Strategy) {
           const token = req.cookies?.jwt;
           return typeof token === 'string' ? token : null;
         },
+        ExtractJwt.fromAuthHeaderAsBearerToken(),
       ]),
       secretOrKey: process.env.JWT_SECRET as string,
     });
