@@ -24,6 +24,17 @@ model Employee {
   @@map("employees")
 }
 
+model Customer {
+  id        String   @id @default(cuid())
+  name      String
+  email     String   @unique
+  password  String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@map("customers")
+}
+
 model Events{
   id          String   @id @default(cuid())
   title       String
@@ -34,3 +45,4 @@ model Events{
 
   @@map("events")
 }
+
