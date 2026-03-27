@@ -7,7 +7,12 @@ async function bootstrap() {
   const app = await NestFactory.create(AppModule);
   app.use(cookieParser());
   app.enableCors({
-    origin: ['http://localhost:3000', 'http://localhost:3001'],
+    origin: [
+      'http://localhost:3000',
+      'http://localhost:3001',
+      'https://booking-system-api-dweu.onrender.com',
+      'https://booking-system-dashboard-iota.vercel.app',
+    ],
     credentials: true,
   });
   app.useGlobalPipes(
