@@ -54,6 +54,7 @@ export class CustomerService {
       sub: customer.id,
       email: customer.email,
       role: 'customer',
+      name: customer.name,
     };
     return {
       access_token: this.auth.generateToken(payload),
