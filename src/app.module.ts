@@ -4,12 +4,19 @@ import { AppService } from './app.service';
 import { PrismaModule } from './prisma/prisma.module';
 import { EmployeeModule } from './employee/employee.module';
 import { AuthModule } from './auth/auth.module';
-import { EventsModule } from './events/events.module';
+import { ServicesModule } from './services/services.module';
 import { CustomerModule } from './customer/customer.module';
 import { BookingModule } from './booking/booking.module';
 
 @Module({
-  imports: [PrismaModule, EmployeeModule, AuthModule, EventsModule, CustomerModule, BookingModule],
+  imports: [
+    PrismaModule,
+    EmployeeModule,
+    AuthModule,
+    ServicesModule,
+    CustomerModule,
+    BookingModule,
+  ],
   controllers: [AppController],
   providers: [AppService],
 })

@@ -36,7 +36,7 @@ model Customer {
   @@map("customers")
 }
 
-model Events{
+model Services{
   id          String   @id @default(cuid())
   title       String
   description String
@@ -45,7 +45,7 @@ model Events{
   updatedAt   DateTime @updatedAt
   Bookings     Booking[]
 
-  @@map("events")
+  @@map("services")
 }
 
 model Booking {
@@ -53,8 +53,8 @@ model Booking {
 
   customer   Customer @relation(fields: [customerId], references: [id])
   customerId String
-
-  event      Events   @relation(fields: [eventId], references: [id])
+  date       DateTime
+  event      Services   @relation(fields: [eventId], references: [id])
   eventId    String
 
   status     String   @default("CONFIRMED")

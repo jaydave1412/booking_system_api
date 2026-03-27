@@ -10,39 +10,39 @@ import {
   Post,
   UseGuards,
 } from '@nestjs/common';
-import { EventsService } from './events.service';
-import { CreateEventDto } from './dto/create-event.dto';
-import { UpdateEventDto } from './dto/update-event.dto';
+import { ServicesService } from './services.service';
+import { CreateEventDto } from './dto/create-service.dto';
+import { UpdateEventDto } from './dto/update-service.dto';
 import { JwtAuthGuard } from 'src/auth/jwtAuth.guard';
 
-@Controller('events')
-export class EventsController {
-  constructor(private readonly eventsService: EventsService) {}
+@Controller('services')
+export class ServicesController {
+  constructor(private readonly servicesService: ServicesService) {}
 
   @Post()
   create(@Body() dto: CreateEventDto) {
-    return this.eventsService.create(dto);
+    return this.servicesService.create(dto);
   }
 
   @Get()
   @UseGuards(JwtAuthGuard)
   findAll() {
-    return this.eventsService.findAll();
+    return this.servicesService.findAll();
   }
 
   @Get(':id')
   findById(@Param('id') id: string) {
-    return this.eventsService.findById(id);
+    return this.servicesService.findById(id);
   }
 
   @Patch(':id')
   update(@Param('id') id: string, @Body() dto: UpdateEventDto) {
-    return this.eventsService.update(id, dto);
+    return this.servicesService.update(id, dto);
   }
 
   @Delete(':id')
   @HttpCode(HttpStatus.NO_CONTENT)
   delete(@Param('id') id: string) {
-    return this.eventsService.delete(id);
+    return this.servicesService.delete(id);
   }
 }
