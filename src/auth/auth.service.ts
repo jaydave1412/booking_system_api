@@ -34,6 +34,7 @@ export class AuthService {
       sub: employee.id,
       email: employee.email,
       role: 'employee',
+      name: employee.name,
     };
     return {
       access_token: this.generateToken(payload),
