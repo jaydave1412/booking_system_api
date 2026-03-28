@@ -1,7 +1,13 @@
-import { IsString, IsNotEmpty } from 'class-validator';
+import { Type } from 'class-transformer';
+import { IsString, IsNotEmpty, IsDate } from 'class-validator';
 
 export class CreateBookingDto {
   @IsString()
   @IsNotEmpty()
-  eventId: string;
+  serviceId: string;
+
+  @Type(() => Date)
+  @IsDate()
+  @IsNotEmpty()
+  date: Date;
 }

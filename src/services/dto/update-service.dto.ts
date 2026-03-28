@@ -1,7 +1,6 @@
-import { Type } from 'class-transformer';
-import { IsString, IsDate, IsOptional } from 'class-validator';
+import { IsString, IsOptional, IsNumber } from 'class-validator';
 
-export class UpdateEventDto {
+export class UpdateServiceDto {
   @IsString()
   @IsOptional()
   title: string;
@@ -10,8 +9,7 @@ export class UpdateEventDto {
   @IsOptional()
   description: string;
 
-  @Type(() => Date)
-  @IsDate()
+  @IsNumber()
   @IsOptional()
-  date: Date;
+  cost: number;
 }

@@ -1,7 +1,6 @@
-import { IsNotEmpty, IsString, IsDate } from 'class-validator';
-import { Type } from 'class-transformer';
+import { IsNotEmpty, IsString, IsNumber } from 'class-validator';
 
-export class CreateEventDto {
+export class CreateServiceDto {
   @IsString()
   @IsNotEmpty()
   title: string;
@@ -10,7 +9,7 @@ export class CreateEventDto {
   @IsNotEmpty()
   description: string;
 
-  @Type(() => Date)
-  @IsDate()
-  date: Date;
+  @IsNumber()
+  @IsNotEmpty()
+  cost: number;
 }

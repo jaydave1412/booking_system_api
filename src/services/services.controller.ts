@@ -11,8 +11,8 @@ import {
   UseGuards,
 } from '@nestjs/common';
 import { ServicesService } from './services.service';
-import { CreateEventDto } from './dto/create-service.dto';
-import { UpdateEventDto } from './dto/update-service.dto';
+import { CreateServiceDto } from './dto/create-service.dto';
+import { UpdateServiceDto } from './dto/update-service.dto';
 import { JwtAuthGuard } from 'src/auth/jwtAuth.guard';
 
 @Controller('services')
@@ -20,7 +20,7 @@ export class ServicesController {
   constructor(private readonly servicesService: ServicesService) {}
 
   @Post()
-  create(@Body() dto: CreateEventDto) {
+  create(@Body() dto: CreateServiceDto) {
     return this.servicesService.create(dto);
   }
 
@@ -36,7 +36,7 @@ export class ServicesController {
   }
 
   @Patch(':id')
-  update(@Param('id') id: string, @Body() dto: UpdateEventDto) {
+  update(@Param('id') id: string, @Body() dto: UpdateServiceDto) {
     return this.servicesService.update(id, dto);
   }
 

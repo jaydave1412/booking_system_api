@@ -36,6 +36,7 @@ export class BookingController {
   @Post()
   @Roles('customer')
   create(@Req() req: Request, @Body() dto: CreateBookingDto) {
+    console.log('Creating booking with data:', dto);
     const user = req.user as { userId: string };
     return this.bookingService.create(user.userId, dto);
   }

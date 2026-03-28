@@ -40,7 +40,7 @@ model Services{
   id          String   @id @default(cuid())
   title       String
   description String
-  date        DateTime
+  cost        Float
   createdAt   DateTime @default(now())
   updatedAt   DateTime @updatedAt
   Bookings     Booking[]
@@ -54,15 +54,14 @@ model Booking {
   customer   Customer @relation(fields: [customerId], references: [id])
   customerId String
   date       DateTime
-  event      Services   @relation(fields: [eventId], references: [id])
-  eventId    String
+  service      Services   @relation(fields: [serviceId], references: [id])
+  serviceId    String
 
-  status     String   @default("CONFIRMED")
+  status     String   @default("PENDING")
 
   createdAt  DateTime @default(now())
   updatedAt  DateTime @updatedAt
 
-  @@unique([customerId, eventId])
   @@map("bookings")
 }
 

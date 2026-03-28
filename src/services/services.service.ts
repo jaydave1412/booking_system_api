@@ -1,19 +1,19 @@
 import { Injectable, NotFoundException } from '@nestjs/common';
 import { PrismaService } from 'src/prisma/prisma.service';
-import { CreateEventDto } from './dto/create-service.dto';
+import { CreateServiceDto } from './dto/create-service.dto';
 import { Services } from 'generated/prisma/client';
-import { UpdateEventDto } from './dto/update-service.dto';
+import { UpdateServiceDto } from './dto/update-service.dto';
 
 @Injectable()
 export class ServicesService {
   constructor(private readonly prisma: PrismaService) {}
 
-  async create(dto: CreateEventDto): Promise<Services> {
+  async create(dto: CreateServiceDto): Promise<Services> {
     const service = await this.prisma.services.create({
       data: {
         title: dto.title,
         description: dto.description,
-        date: dto.date,
+        cost: dto.cost,
       },
     });
 
@@ -33,11 +33,11 @@ export class ServicesService {
     return service;
   }
 
-  async update(id: string, dto: UpdateEventDto) {
+  async update(id: string, dto: UpdateServiceDto) {
     const data: Partial<Services> = {
       ...(dto.title && { title: dto.title }),
       ...(dto.description && { description: dto.description }),
-      ...(dto.date && { date: dto.date }),
+      ...(dto.cost && { cost: dto.cost }),
     };
     const service = await this.prisma.services.update({
       where: { id },

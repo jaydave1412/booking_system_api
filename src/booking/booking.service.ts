@@ -1,11 +1,20 @@
-import { ConflictException, Injectable } from '@nestjs/common';
+import { Injectable } from '@nestjs/common';
 import { PrismaService } from 'src/prisma/prisma.service';
 import { CreateBookingDto } from './dto/create-booking.dto';
 import { UpdateBookingDto } from './dto/update-booking.dto';
 
 const bookingInclude = {
   customer: { select: { id: true, name: true, email: true } },
-  event: true,
+  service: {
+    select: {
+      id: true,
+      title: true,
+      description: true,
+      cost: true,
+      createdAt: true,
+      updatedAt: true,
+    },
+  },
 };
 
 @Injectable()
@@ -24,16 +33,9 @@ export class BookingService {
   }
 
   async create(customerId: string, dto: CreateBookingDto) {
-    const existing = await this.prisma.booking.findUnique({
-      where: { customerId_eventId: { customerId, eventId: dto.eventId } },
-    });
-
-    if (existing) {
-      throw new ConflictException('You have already booked this event');
-    }
-
+    console.log(dto, 'booking dto');
     return this.prisma.booking.create({
-      data: { customerId, eventId: dto.eventId },
+      data: { customerId, serviceId: dto.serviceId, date: dto.date },
       include: bookingInclude,
     });
   }
