@@ -1,0 +1,40 @@
+PROMPT HISTORY
+==============
+
+
+SESSION 1 — /init & Employee/Event Setup
+-----------------------------------------
+
+1. /init — analyze codebase and create CLAUDE.md
+2. I have added employee create service and controller now create employee edit, findall, findbyid, and delete
+3. commit this with a proper commit message
+4. generate a secure jwt secret
+5. in .env do I need to add quotes?
+6. in my .env database has quote
+7. fix typescript error in event service
+8. I have made events service and I have dtos as well create events controller
+
+
+SESSION 2 — Bookings, Auth & Customer
+---------------------------------------
+
+1. I already have created booking module, controller and service. Now add findall bookings, with customer and events, update booking, create booking, all of these are protected routes, findall is only accessible to employee, add finduser booking as well to give only the users booking use request.user
+2. in auth service add a capability for authorization header as well because the mobile app will not send cookies (Bearer token) but keep the cookies functionality for web
+3. if I try to create a booking for customer a and event a, if it already exists in db then it is giving error but I want to handle it in api as well so I can give proper error
+4. add create customer route
+
+
+SESSION 3 — Prompt History Requests
+--------------------------------------
+
+1. give me our prompt history summarized for this project
+2. more detailed
+
+
+SESSION 4 — Current Session
+------------------------------
+
+1. when I press up arrow I can see the prompt I had given you I want a history of those starting from /init please give it to me
+2. but keep saving it in a markdown file
+3. instead of markdown change it to normal text with simple formatting so I can copy paste it to word doc
+4. save the txt file remove md file
